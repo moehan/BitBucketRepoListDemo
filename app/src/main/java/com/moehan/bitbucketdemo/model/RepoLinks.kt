@@ -1,8 +1,11 @@
 package com.moehan.bitbucketdemo.model
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class RepoLinks(
         @SerializedName("avatar")
         val avatar: Link? = null,
@@ -32,4 +35,4 @@ data class RepoLinks(
         val tags: Link? = null,
         @SerializedName("watchers")
         val watchers: Link? = null
-)
+): Parcelable

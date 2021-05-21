@@ -2,6 +2,8 @@ package com.moehan.bitbucketdemo.extensions
 
 import android.app.Application
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
@@ -30,5 +32,14 @@ fun View.remove() {
 
 fun View.show() {
     visibility = View.VISIBLE
+}
+
+fun Context.goToWebLink(link: String) {
+    val intent = Intent(Intent.ACTION_VIEW).apply {
+        data = Uri.parse(link)
+    }
+    if (intent.resolveActivity(packageManager) != null) {
+        startActivity(intent)
+    }
 }
 

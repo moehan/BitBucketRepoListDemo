@@ -6,6 +6,18 @@
     <fragment
         android:id="@+id/repoListFragment"
         android:name="com.moehan.bitbucketdemo.ui.repo_list.RepoListFragment"
-        android:label="RepoListFragment" />
+        android:label="RepoListFragment" >
+        <action
+            android:id="@+id/action_repoListFragment_to_repoDetailFragment"
+            app:destination="@id/repoDetailFragment" />
+    </fragment>
 
+    <fragment
+        android:id="@+id/repoDetailFragment"
+        android:name="com.moehan.bitbucketdemo.ui.repo_detail.RepoDetailFragment"
+        android:label="RepoDetailFragment" >
+
+        <argument android:name="repo"
+            app:argType="com.moehan.bitbucketdemo.model.RepoItem" />
+    </fragment>
 </navigation>

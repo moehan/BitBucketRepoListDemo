@@ -1,8 +1,11 @@
 package com.moehan.bitbucketdemo.model
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Project(
         @SerializedName("key")
     val key: String? = null,
@@ -14,4 +17,4 @@ data class Project(
     val type: String? = null,
         @SerializedName("uuid")
     val uuid: String? = null
-)
+) : Parcelable

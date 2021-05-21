@@ -1,11 +1,14 @@
 package com.moehan.bitbucketdemo.model
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Owner(
         @SerializedName("account_id")
-        val accountId: Any? = null,
+        val accountId: String? = null,
         @SerializedName("display_name")
         val displayName: String? = null,
         @SerializedName("links")
@@ -18,4 +21,4 @@ data class Owner(
         val username: String? = null,
         @SerializedName("uuid")
         val uuid: String? = null
-)
+) : Parcelable

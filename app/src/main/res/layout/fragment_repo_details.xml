@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="repo"
+            type="com.moehan.bitbucketdemo.model.RepoItem" />
+
+        <variable
+            name="linkClickedListener"
+            type="com.moehan.bitbucketdemo.ui.repo_detail.OnLinkClickedListener" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_normal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{repo.name}"
+            android:textSize="@dimen/text_size_large"
+            android:textStyle="bold"
+            tools:text="Repository Name" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:gravity="center"
+            android:text="@{`Created On : ` + repo.createdOn}"
+            android:textSize="@dimen/text_size_medium"
+            tools:text="Created On : 12 May 2020, 19:34" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:gravity="center"
+            android:text="@{`Updated On : ` + repo.updatedOn}"
+            android:textSize="@dimen/text_size_medium"
+            tools:text="Updated On : 12 May 2020, 19:34" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:gravity="center"
+            android:text="@{`Language used : ` + repo.language}"
+            android:textSize="@dimen/text_size_medium"
+            tools:text="Language used :Java" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:gravity="left"
+            android:textSize="@dimen/text_size_medium"
+            android:textStyle="bold"
+            android:text="Owner" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/margin_normal">
+
+            <ImageView
+                android:id="@+id/iv_owner_avatar"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                tools:src="@drawable/ic_person"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_owner_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{`Name : ` + repo.owner.displayName}"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:textSize="@dimen/text_size_medium"
+                tools:text="Name : Moe Han"
+                app:layout_constraintLeft_toRightOf="@+id/iv_owner_avatar"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:text="@{`Username : ` + repo.owner.nickname}"
+                android:textSize="@dimen/text_size_medium"
+                tools:text="Nickname : Tak"
+                android:layout_marginStart="@dimen/margin_normal"
+                app:layout_constraintLeft_toRightOf="@+id/iv_owner_avatar"
+                app:layout_constraintTop_toBottomOf="@+id/tv_owner_name" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:textSize="@dimen/text_size_medium"
+            android:textStyle="bold"
+            android:visibility="@{repo.repoLinks.branches.href.isEmpty == true? View.GONE : View.VISIBLE }"
+            android:text="Branches" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:text="@{repo.repoLinks.branches.href}"
+            android:textSize="@dimen/text_size_medium"
+            android:onClick="@{() -> linkClickedListener.onLinkClicked(repo.repoLinks.branches.href)}"
+            android:visibility="@{repo.repoLinks.branches.href.isEmpty == true? View.GONE : View.VISIBLE }"
+            android:textColor="@android:color/holo_blue_dark"
+            tools:text="https://api.bitbucket.org/2.0/repositories/opensymphony/xwork/refs/branches" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:textSize="@dimen/text_size_medium"
+            android:textStyle="bold"
+            android:visibility="@{repo.repoLinks.commits.href.isEmpty == true? View.GONE : View.VISIBLE }"
+            android:text="Commits" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:text="@{repo.repoLinks.commits.href}"
+            android:textSize="@dimen/text_size_medium"
+            android:onClick="@{() -> linkClickedListener.onLinkClicked(repo.repoLinks.commits.href)}"
+            android:visibility="@{repo.repoLinks.commits.href.isEmpty == true? View.GONE : View.VISIBLE }"
+            android:textColor="@android:color/holo_blue_dark"
+            tools:text="https://api.bitbucket.org/2.0/repositories/opensymphony/xwork/refs/branches" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:textSize="@dimen/text_size_medium"
+            android:textStyle="bold"
+            android:visibility="@{repo.repoLinks.tags.href.isEmpty == true? View.GONE : View.VISIBLE }"
+            android:text="Tags" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:text="@{repo.repoLinks.tags.href}"
+            android:textSize="@dimen/text_size_medium"
+            android:onClick="@{() -> linkClickedListener.onLinkClicked(repo.repoLinks.tags.href)}"
+            android:visibility="@{repo.repoLinks.tags.href.isEmpty == true? View.GONE : View.VISIBLE }"
+            android:textColor="@android:color/holo_blue_dark"
+            tools:text="https://api.bitbucket.org/2.0/repositories/opensymphony/xwork/refs/branches" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:textSize="@dimen/text_size_medium"
+            android:textStyle="bold"
+            android:visibility="@{repo.repoLinks.pullRequests.href.isEmpty == true? View.GONE : View.VISIBLE }"
+            android:text="Pull Requests" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:text="@{repo.repoLinks.pullRequests.href}"
+            android:textSize="@dimen/text_size_medium"
+            android:onClick="@{() -> linkClickedListener.onLinkClicked(repo.repoLinks.pullRequests.href)}"
+            android:visibility="@{repo.repoLinks.pullRequests.href.isEmpty == true? View.GONE : View.VISIBLE }"
+            android:textColor="@android:color/holo_blue_dark"
+            tools:text="https://api.bitbucket.org/2.0/repositories/opensymphony/xwork/refs/branches" />
+
+    </LinearLayout>
+
+</layout>

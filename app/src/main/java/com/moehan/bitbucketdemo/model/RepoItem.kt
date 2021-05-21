@@ -1,8 +1,11 @@
 package com.moehan.bitbucketdemo.model
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class RepoItem(
         @SerializedName("created_on")
         val createdOn: String? = null,
@@ -46,4 +49,4 @@ data class RepoItem(
         val website: String? = null,
         @SerializedName("workspace")
         val workspace: Workspace? = null
-)
+) : Parcelable

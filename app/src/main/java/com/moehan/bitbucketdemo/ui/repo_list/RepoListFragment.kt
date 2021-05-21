@@ -9,8 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import com.moehan.bitbucketdemo.BitbucketDemoApplication
 import com.moehan.bitbucketdemo.databinding.FragmentRepoListBinding
+import com.moehan.bitbucketdemo.extensions.goToWebLink
 import com.moehan.bitbucketdemo.extensions.obtainViewModel
 import com.moehan.bitbucketdemo.extensions.remove
 import com.moehan.bitbucketdemo.model.BitbucketRepoListResponse
@@ -73,27 +75,19 @@ class RepoListFragment : Fragment() {
         }
 
         response.next?.let {link ->
-            binding?.btnNext?.setOnClickListener {  goToLink(link) }
+            binding?.btnNext?.setOnClickListener { requireActivity().goToWebLink(link) }
         } ?: binding?.btnNext?.remove()
     }
 
     private fun showRepoList(repoItems: List<RepoItem>?) {
         val adapter = RepoListAdapter(object : RepoListAdapter.RepoListAdapterListener {
             override fun onRepositorySelected(repo: RepoItem) {
-                // TODO("Not yet implemented")
+                val action = RepoListFragmentDirections.actionRepoListFragmentToRepoDetailFragment(repo)
+                binding?.root?.findNavController()?.navigate(action)
             }
         })
         adapter.submitList(repoItems)
         binding?.rvRepoList?.adapter = adapter
-    }
-
-    private fun goToLink(link: String) {
-        val intent = Intent(Intent.ACTION_VIEW).apply {
-            data = Uri.parse(link)
-        }
-        if (intent.resolveActivity(requireActivity().packageManager) != null) {
-            startActivity(intent)
-        }
     }
 
 
