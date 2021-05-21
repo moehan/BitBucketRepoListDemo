@@ -6,5 +6,5 @@ import retrofit2.http.GET
 
 interface BitbucketApi {
     @GET(Endpoints.getAllRepositories)
-    suspend fun getAllCountries() = BitbucketRepoListResponse()
+    suspend fun getAllRepositories() = BitbucketRepoListResponse()
 }
