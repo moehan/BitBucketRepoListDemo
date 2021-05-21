@@ -1,4 +1,4 @@
-package com.moehan.cartracksampleapp.di
+package com.moehan.bitbucketdemo.di
 
 import com.google.gson.Gson
 import com.moehan.bitbucketdemo.BuildConfig
@@ -9,6 +9,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -29,6 +30,7 @@ class NetworkModule {
     fun provideOkHttpClient(): OkHttpClient {
         val logger = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BASIC }
         return OkHttpClient.Builder()
+            .connectTimeout(10, TimeUnit.SECONDS)
             .addInterceptor(logger)
             .build()
     }

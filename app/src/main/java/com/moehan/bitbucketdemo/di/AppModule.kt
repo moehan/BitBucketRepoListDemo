@@ -1,4 +1,4 @@
-package com.moehan.cartracksampleapp.di
+package com.moehan.bitbucketdemo.di
 
 import android.app.Application
 import dagger.Module

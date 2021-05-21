@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">BitBucketDemo</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="repo_list_fetch_failure_msg">Failed to retrieve repository list.</string>
+    <string name="repo_list_empty_msg">Repository list is empty.</string>
+    <string name="next">Next</string>
 </resources>

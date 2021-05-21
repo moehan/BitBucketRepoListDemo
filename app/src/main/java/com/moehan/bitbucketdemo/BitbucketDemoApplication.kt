@@ -2,7 +2,7 @@ package com.moehan.bitbucketdemo
 
 import android.app.Application
 import android.content.Context
-import com.moehan.cartracksampleapp.di.*
+import com.moehan.bitbucketdemo.di.*
 
 class BitbucketDemoApplication : Application(){
 
