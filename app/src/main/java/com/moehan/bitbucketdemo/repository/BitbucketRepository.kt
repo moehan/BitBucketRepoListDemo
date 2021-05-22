@@ -17,7 +17,7 @@ class BitbucketRepository(
     suspend fun getRepoList(): BitbucketRepoListResponse =
         when (BuildConfig.DEBUG && useMockDataForTesting) {
             true -> {
-                val mockResponseJson = application.loadJSONFromAsset("bitbucket_repos_response_200.json")
+                val mockResponseJson = application.loadJSONFromAsset("mock_bitbucket_repo_list.json")
                 val mockResponse = gson.fromJson(mockResponseJson, BitbucketRepoListResponse::class.java)
                 mockResponse
             }

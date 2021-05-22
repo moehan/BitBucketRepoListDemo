@@ -18,13 +18,12 @@ class RepoListViewModel(val app: Application, val repository: BitbucketRepositor
         viewModelScope.launch {
             try{
                 val response = repository.getRepoList()
+                repoListOutcome.value = Outcome.loading(false)
                 repoListOutcome.value = Outcome.success(response)
             }catch (exception: Exception){
-                repoListOutcome.value = Outcome.failure(exception)
-            }finally {
                 repoListOutcome.value = Outcome.loading(false)
+                repoListOutcome.value = Outcome.failure(exception)
             }
-
         }
     }
 }
