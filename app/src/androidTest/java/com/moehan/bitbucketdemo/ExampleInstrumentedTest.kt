@@ -1,14 +1,10 @@
 package com.moehan.bitbucketdemo
 
-import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.moehan.bitbucketdemo.extensions.toAnotherDateFormat
-
+import androidx.test.platform.app.InstrumentationRegistry
+import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
-
-import org.junit.Assert.*
-import kotlin.math.exp
 
 /**
  * Instrumented test, which will execute on an Android device.
