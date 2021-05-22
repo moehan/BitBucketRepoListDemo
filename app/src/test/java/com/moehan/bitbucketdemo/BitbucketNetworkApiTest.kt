@@ -18,7 +18,7 @@ class BitbucketNetworkApiTest {
     private val mockWebServer = MockWebServer()
 
     private val client = OkHttpClient.Builder()
-        .connectTimeout(1, TimeUnit.SECONDS)
+        .connectTimeout(3, TimeUnit.SECONDS)
         .readTimeout(1, TimeUnit.SECONDS)
         .writeTimeout(1, TimeUnit.SECONDS)
         .build()
