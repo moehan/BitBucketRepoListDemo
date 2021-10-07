@@ -1,7 +1,7 @@
 package com.moehan.bitbucketdemo
 
 object AppConfigurations{
-    const val useMockDataForTesting = false
+    const val useMockDataForTesting = true
 }
 
 object Endpoints {

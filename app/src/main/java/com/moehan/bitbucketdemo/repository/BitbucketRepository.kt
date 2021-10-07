@@ -7,8 +7,11 @@ import com.moehan.bitbucketdemo.BuildConfig
 import com.moehan.bitbucketdemo.api.BitbucketApi
 import com.moehan.bitbucketdemo.extensions.loadJSONFromAsset
 import com.moehan.bitbucketdemo.model.BitbucketRepoListResponse
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class BitbucketRepository(
+@Singleton
+class BitbucketRepository @Inject constructor(
     private val application: Application,
     private val gson: Gson,
     private val api: BitbucketApi

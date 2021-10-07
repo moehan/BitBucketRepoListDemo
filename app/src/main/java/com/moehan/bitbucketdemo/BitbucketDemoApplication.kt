@@ -11,7 +11,6 @@ class BitbucketDemoApplication : Application(){
             .builder()
             .appModule(AppModule(this))
             .networkModule(NetworkModule())
-            .dataModule(DataModule())
             .build()
     }
 

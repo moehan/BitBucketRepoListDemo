@@ -6,9 +6,15 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AppModule::class, NetworkModule::class,DataModule::class])
+@Component(
+    modules = [
+        AppModule::class,
+        ViewModelModule::class,
+        ViewModelFactoryModule::class,
+        NetworkModule::class
+    ]
+)
 interface AppComponent {
-
     fun inject(application: Application)
     fun inject(repoListFragment: RepoListFragment)
 }

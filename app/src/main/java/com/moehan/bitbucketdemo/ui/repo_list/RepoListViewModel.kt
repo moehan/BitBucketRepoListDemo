@@ -8,8 +8,11 @@ import com.moehan.bitbucketdemo.model.BitbucketRepoListResponse
 import com.moehan.bitbucketdemo.repository.BitbucketRepository
 import com.moehan.bitbucketdemo.utils.Outcome
 import kotlinx.coroutines.launch
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class RepoListViewModel(val app: Application, val repository: BitbucketRepository) : AndroidViewModel(app) {
+@Singleton
+class RepoListViewModel @Inject constructor(val app: Application, val repository: BitbucketRepository) : AndroidViewModel(app) {
 
     val repoListOutcome = MutableLiveData<Outcome<BitbucketRepoListResponse>>()
 

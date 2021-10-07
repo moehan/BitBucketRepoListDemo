@@ -15,15 +15,14 @@ import com.moehan.bitbucketdemo.extensions.obtainViewModel
 import com.moehan.bitbucketdemo.extensions.remove
 import com.moehan.bitbucketdemo.model.BitbucketRepoListResponse
 import com.moehan.bitbucketdemo.model.RepoItem
+import com.moehan.bitbucketdemo.ui.BaseFragment
 import com.moehan.bitbucketdemo.utils.Outcome
 import javax.inject.Inject
 
 
-class RepoListFragment : Fragment() {
+class RepoListFragment : BaseFragment() {
 
-    @Inject
-    lateinit var repoListViewModelFactory: RepoListViewModelFactory
-    private var repoListViewModel: RepoListViewModel? = null
+    private val repoListViewModel: RepoListViewModel by injectedVMs()
 
     private var binding: FragmentRepoListBinding? = null
 
@@ -38,8 +37,7 @@ class RepoListFragment : Fragment() {
     }
 
     private fun initializeViewModel() {
-        repoListViewModel = obtainViewModel(RepoListViewModel::class.java, repoListViewModelFactory)
-        repoListViewModel?.repoListOutcome?.observe(this, Observer { outcome ->
+        repoListViewModel.repoListOutcome.observe(this, Observer { outcome ->
             when (outcome) {
                 is Outcome.Progress -> binding?.isLoading = outcome.loading
                 is Outcome.Failure -> binding?.fetchReposFailed = true
@@ -59,7 +57,7 @@ class RepoListFragment : Fragment() {
         binding = FragmentRepoListBinding.inflate(inflater, container, false)
         binding?.isLoading = false
         binding?.fetchReposFailed = false
-        repoListViewModel?.getRepositoryList()
+        repoListViewModel.getRepositoryList()
         return binding?.root
     }
 
